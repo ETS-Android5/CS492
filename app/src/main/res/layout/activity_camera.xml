@@ -8,18 +8,13 @@
 
     <LinearLayout
         android:orientation="vertical"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
         <ImageView
-            android:id="@+id/cameraview"
+            android:id="@+id/photo_view"
             android:layout_width="match_parent"
-            android:layout_height="680dp"/>
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/camerabutton"
-            android:text="사진찍기"
-            android:background="#708090"/>
+            android:layout_height="match_parent"/>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
