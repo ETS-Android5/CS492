@@ -1,5 +1,6 @@
 package com.cs492.skincam;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
@@ -21,7 +22,7 @@ import com.google.android.gms.vision.CameraSource;
 
 public class MainActivity extends AppCompatActivity {
 
-    final private static String TAG = "GILBOMI";
+    final private static String TAG = "CAMERA";
 
     Button btn_cam;
     Button btn_gallery;
@@ -56,4 +57,12 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        Log.d(TAG, "onRequestPermissionsResult");
+        if (grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
+            Log.d(TAG, "Permission: " + permissions[0] + "was " + grantResults[0]);
+        }
+    }
 }
