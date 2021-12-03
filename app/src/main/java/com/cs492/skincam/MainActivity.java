@@ -78,6 +78,19 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+        btn_gallery.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                switch (view.getId()){
+                    case R.id.btn_gallery:
+                        Intent photoIntent = new Intent(getApplicationContext(), GalleryActivity.class);
+                        startActivity(photoIntent);
+                        break;
+                }
+            }
+        });
+
     }
 
 }
