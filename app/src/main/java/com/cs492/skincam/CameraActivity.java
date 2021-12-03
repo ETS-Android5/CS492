@@ -2,6 +2,7 @@ package com.cs492.skincam;
 
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -22,9 +23,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.FileProvider;
 
+import org.pytorch.IValue;
+import org.pytorch.Module;
+import org.pytorch.Tensor;
+import org.pytorch.torchvision.TensorImageUtils;
+
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOError;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -56,12 +65,20 @@ public class CameraActivity extends AppCompatActivity {
                     if (resultCode == RESULT_OK){
                         File file = new File(mCurrentPhotoPath);
                         Bitmap bitmap;
+                        // load pretrained model
+                        Module module = Module.load(assetFilePath(this, "skinclass_model.ptl"));
+
                         if (Build.VERSION.SDK_INT >= 29){
                             ImageDecoder.Source source = ImageDecoder.createSource(getContentResolver(), Uri.fromFile(file));
                             try{
                                 bitmap = ImageDecoder.decodeBitmap(source);
                                 if (bitmap != null){
                                     photo_view.setImageBitmap(bitmap);
+                                    Tensor inputTensor = TensorImageUtils.bitmapToFloat32Tensor(bitmap,
+                                            TensorImageUtils.TORCHVISION_NORM_MEAN_RGB, TensorImageUtils.TORCHVISION_NORM_STD_RGB);
+                                    Tensor outputTensor = module.forward(IValue.from(inputTensor)).toTensor();
+                                    float[] scores = outputTensor.getDataAsFloatArray();
+                                    Log.i("Score Result: ", scores.toString());
                                 }
                             }catch (IOException e) {
                                 e.printStackTrace();
@@ -69,7 +86,14 @@ public class CameraActivity extends AppCompatActivity {
                         } else{
                             try{
                                 bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), Uri.fromFile(file));
-                                if(bitmap != null){photo_view.setImageBitmap(bitmap);}
+                                if(bitmap != null){
+                                    photo_view.setImageBitmap(bitmap);
+                                    Tensor inputTensor = TensorImageUtils.bitmapToFloat32Tensor(bitmap,
+                                            TensorImageUtils.TORCHVISION_NORM_MEAN_RGB, TensorImageUtils.TORCHVISION_NORM_STD_RGB);
+                                    Tensor outputTensor = module.forward(IValue.from(inputTensor)).toTensor();
+                                    float[] scores = outputTensor.getDataAsFloatArray();
+                                    Log.i("Score Result: ", scores.toString());
+                                }
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
@@ -108,6 +132,25 @@ public class CameraActivity extends AppCompatActivity {
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
                 startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
             }
+        }
+    }
+
+    public static String assetFilePath(Context context, String assetName) throws IOException {
+        File file = new File(context.getFilesDir(), assetName);
+        if (file.exists() && file.length() > 0) {
+            return file.getAbsolutePath();
+        }
+
+        try (InputStream is = context.getAssets().open(assetName)) {
+            try (OutputStream os = new FileOutputStream(file)) {
+                byte[] buffer = new byte[4 * 1024];
+                int read;
+                while ((read = is.read(buffer)) != -1) {
+                    os.write(buffer, 0, read);
+                }
+                os.flush();
+            }
+            return file.getAbsolutePath();
         }
     }
 }
