@@ -7,12 +7,14 @@ import android.content.ContentResolver;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
@@ -94,6 +96,26 @@ public class GalleryActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "파일 삭제 실패", Toast.LENGTH_SHORT).show();
         }
     }
+
+    public void bt3(View view) {    // 이미지 선택 누르면 다음 activity로 bitmap file 전송.
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        Bitmap bitmap = ((BitmapDrawable)imageView.getDrawable()).getBitmap();
+        float scale = (float) (1024/(float)bitmap.getWidth());
+        int image_w = (int) (bitmap.getWidth() * scale);
+        int image_h = (int) (bitmap.getHeight() * scale);
+        Bitmap resize = Bitmap.createScaledBitmap(bitmap, image_w, image_h, true);
+        resize.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+        byte[] byteArray = stream.toByteArray();
+
+        Intent intent = new Intent(GalleryActivity.this,ResultActivity.class);
+        intent.putExtra("image", byteArray);
+
+        startActivity(intent);
+    }
+
+
+
+
 }
 
 
