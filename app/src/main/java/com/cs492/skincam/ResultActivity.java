@@ -47,8 +47,13 @@ public class ResultActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        Tensor inputTensor = TensorImageUtils.bitmapToFloat32Tensor(bitmap,
-                TensorImageUtils.TORCHVISION_NORM_MEAN_RGB, TensorImageUtils.TORCHVISION_NORM_STD_RGB);
+        float[] zeros = new float[]{0f, 0f, 0f};
+        float[] ones = new float[]{1f, 1f, 1f};  // Since the return values is already 0~1
+
+        Tensor inputTensor = TensorImageUtils.bitmapToFloat32Tensor(bitmap,0,0,224,224,
+                zeros, ones);
+        float[] inp=inputTensor.getDataAsFloatArray();
+
         Tensor outputTensor = module.forward(IValue.from(inputTensor)).toTensor();
         float[] scores = outputTensor.getDataAsFloatArray();
 
