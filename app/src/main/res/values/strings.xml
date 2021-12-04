@@ -1,3 +1,165 @@
 <resources>
     <string name="app_name">SkinCam</string>
+
+    <string name="description_acne">
+    Avoid getting stress or drinking alcohol.
+    Do not wash your face frequently.
+    Do not squeeze your acne. Be careful.
+    please go to hospital as soon as possible.
+    </string>
+
+    <string name="description_Actinic_Keratosis">
+    Avoid getting stress or drinking alcohol.
+    Do not wash your face frequently.
+    Do not squeeze your acne. Be careful.
+    please go to hospital as soon as possible.
+    </string>
+
+    <string name="description_Atopic_Dermatitis">
+    Avoid getting stress or drinking alcohol.
+    Do not wash your face frequently.
+    Do not squeeze your acne. Be careful.
+    please go to hospital as soon as possible.
+    </string>
+
+    <string name="description_Bullous_Disease">
+    Avoid getting stress or drinking alcohol.
+    Do not wash your face frequently.
+    Do not squeeze your acne. Be careful.
+    please go to hospital as soon as possible.
+    </string>
+
+    <string name="description_Cellulitis_Impetigo">
+    Avoid getting stress or drinking alcohol.
+    Do not wash your face frequently.
+    Do not squeeze your acne. Be careful.
+    please go to hospital as soon as possible.
+    </string>
+
+    <string name="description_Eczema">
+    Avoid getting stress or drinking alcohol.
+    Do not wash your face frequently.
+    Do not squeeze your acne. Be careful.
+    please go to hospital as soon as possible.
+    </string>
+
+    <string name="description_Exanthem">
+    Avoid getting stress or drinking alcohol.
+    Do not wash your face frequently.
+    Do not squeeze your acne. Be careful.
+    please go to hospital as soon as possible.
+    </string>
+
+    <string name="description_Hair_Loss">
+    Avoid getting stress or drinking alcohol.
+    Do not wash your face frequently.
+    Do not squeeze your acne. Be careful.
+    please go to hospital as soon as possible.
+    </string>
+
+    <string name="description_Herpes_HPV">
+    Avoid getting stress or drinking alcohol.
+    Do not wash your face frequently.
+    Do not squeeze your acne. Be careful.
+    please go to hospital as soon as possible.
+    </string>
+
+    <string name="description_Light_Disease">
+    Avoid getting stress or drinking alcohol.
+    Do not wash your face frequently.
+    Do not squeeze your acne. Be careful.
+    please go to hospital as soon as possible.
+    </string>
+
+
+    <string name="description_Lupus">
+    Avoid getting stress or drinking alcohol.
+    Do not wash your face frequently.
+    Do not squeeze your acne. Be careful.
+    please go to hospital as soon as possible.
+    </string>
+
+    <string name="description_Melanoma_Skin_Cancer">
+    Avoid getting stress or drinking alcohol.
+    Do not wash your face frequently.
+    Do not squeeze your acne. Be careful.
+    please go to hospital as soon as possible.
+    </string>
+
+    <string name="description_Nail_Fungus">
+    Avoid getting stress or drinking alcohol.
+    Do not wash your face frequently.
+    Do not squeeze your acne. Be careful.
+    please go to hospital as soon as possible.
+    </string>
+
+    <string name="description_Contact_Dermatitis">
+    Avoid getting stress or drinking alcohol.
+    Do not wash your face frequently.
+    Do not squeeze your acne. Be careful.
+    please go to hospital as soon as possible.
+    </string>
+
+    <string name="description_Psoriasis">
+    Avoid getting stress or drinking alcohol.
+    Do not wash your face frequently.
+    Do not squeeze your acne. Be careful.
+    please go to hospital as soon as possible.
+    </string>
+
+    <string name="description_Scabies_Lyme_Disease">
+    Avoid getting stress or drinking alcohol.
+    Do not wash your face frequently.
+    Do not squeeze your acne. Be careful.
+    please go to hospital as soon as possible.
+    </string>
+
+    <string name="description_Seborrheic_Keratoses">
+    Avoid getting stress or drinking alcohol.
+    Do not wash your face frequently.
+    Do not squeeze your acne. Be careful.
+    please go to hospital as soon as possible.
+    </string>
+
+    <string name="description_Systemic_Disease">
+    Avoid getting stress or drinking alcohol.
+    Do not wash your face frequently.
+    Do not squeeze your acne. Be careful.
+    please go to hospital as soon as possible.
+    </string>
+
+    <string name="description_Fungal_Infection">
+    Avoid getting stress or drinking alcohol.
+    Do not wash your face frequently.
+    Do not squeeze your acne. Be careful.
+    please go to hospital as soon as possible.
+    </string>
+
+    <string name="description_Urticaria_Hives">
+    Avoid getting stress or drinking alcohol.
+    Do not wash your face frequently.
+    Do not squeeze your acne. Be careful.
+    please go to hospital as soon as possible.
+    </string>
+
+    <string name="description_Vascular_Tumor">
+    Avoid getting stress or drinking alcohol.
+    Do not wash your face frequently.
+    Do not squeeze your acne. Be careful.
+    please go to hospital as soon as possible.
+    </string>
+
+    <string name="description_Vasculitis">
+    Avoid getting stress or drinking alcohol.
+    Do not wash your face frequently.
+    Do not squeeze your acne. Be careful.
+    please go to hospital as soon as possible.
+    </string>
+
+    <string name="description_Viral_Infection">
+    Avoid getting stress or drinking alcohol.
+    Do not wash your face frequently.
+    Do not squeeze your acne. Be careful.
+    please go to hospital as soon as possible.
+    </string>
 </resources>
