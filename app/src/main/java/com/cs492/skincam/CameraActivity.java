@@ -23,9 +23,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.FileProvider;
 
-import org.pytorch.IValue;
-import org.pytorch.Module;
-import org.pytorch.Tensor;
 import org.pytorch.torchvision.TensorImageUtils;
 
 import java.io.File;
@@ -65,8 +62,6 @@ public class CameraActivity extends AppCompatActivity {
                     if (resultCode == RESULT_OK){
                         File file = new File(mCurrentPhotoPath);
                         Bitmap bitmap;
-                        // load pretrained model
-                        Module module = Module.load(assetFilePath(this, "skinclass_model.ptl"));
 
                         if (Build.VERSION.SDK_INT >= 29){
                             ImageDecoder.Source source = ImageDecoder.createSource(getContentResolver(), Uri.fromFile(file));
@@ -74,11 +69,6 @@ public class CameraActivity extends AppCompatActivity {
                                 bitmap = ImageDecoder.decodeBitmap(source);
                                 if (bitmap != null){
                                     photo_view.setImageBitmap(bitmap);
-                                    Tensor inputTensor = TensorImageUtils.bitmapToFloat32Tensor(bitmap,
-                                            TensorImageUtils.TORCHVISION_NORM_MEAN_RGB, TensorImageUtils.TORCHVISION_NORM_STD_RGB);
-                                    Tensor outputTensor = module.forward(IValue.from(inputTensor)).toTensor();
-                                    float[] scores = outputTensor.getDataAsFloatArray();
-                                    Log.i("Score Result: ", scores.toString());
                                 }
                             }catch (IOException e) {
                                 e.printStackTrace();
@@ -88,11 +78,6 @@ public class CameraActivity extends AppCompatActivity {
                                 bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), Uri.fromFile(file));
                                 if(bitmap != null){
                                     photo_view.setImageBitmap(bitmap);
-                                    Tensor inputTensor = TensorImageUtils.bitmapToFloat32Tensor(bitmap,
-                                            TensorImageUtils.TORCHVISION_NORM_MEAN_RGB, TensorImageUtils.TORCHVISION_NORM_STD_RGB);
-                                    Tensor outputTensor = module.forward(IValue.from(inputTensor)).toTensor();
-                                    float[] scores = outputTensor.getDataAsFloatArray();
-                                    Log.i("Score Result: ", scores.toString());
                                 }
                             } catch (IOException e) {
                                 e.printStackTrace();
