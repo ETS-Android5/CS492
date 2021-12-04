@@ -3,10 +3,13 @@ package com.cs492.skincam;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -23,13 +26,17 @@ import java.io.OutputStream;
 
 public class ResultActivity extends AppCompatActivity {
 
+    Button btn_return;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
 
+        btn_return = (Button) findViewById(R.id.btn_return);
+
         ImageView imageview = (ImageView)findViewById(R.id.imageview);
-        TextView textview = (TextView)findViewById(R.id.textview);
+        TextView textView = (TextView)findViewById(R.id.textview);
 
         Bundle extras = getIntent().getExtras();
 
@@ -68,7 +75,92 @@ public class ResultActivity extends AppCompatActivity {
         }
         Log.i("MODEL_RESULT", String.valueOf(maxScoreIdx));
 
+
+        if(maxScoreIdx == 0) {
+            textView.setText("acne");
+        }
+        else if(maxScoreIdx == 1){
+            textView.setText("Actinic Keratosis Basal Cell Carcinoma/Malignant Lesion");
+        }
+        else if(maxScoreIdx == 2){
+            textView.setText("Atopic Dermatitis");
+        }
+        else if(maxScoreIdx == 3){
+            textView.setText("Bullous Disease");
+        }
+        else if(maxScoreIdx == 4){
+            textView.setText("Cellulitis Impetigo and other Bacterial Infection");
+        }
+        else if(maxScoreIdx == 5){
+            textView.setText("Eczema");
+        }
+        else if(maxScoreIdx == 6){
+            textView.setText("Exanthem/Drug Eruption");
+        }
+        else if(maxScoreIdx == 7){
+            textView.setText("Hair Loss or Hair Disease");
+        }
+        else if(maxScoreIdx == 8){
+            textView.setText("Herpes HPV or STD");
+        }
+        else if(maxScoreIdx == 9){
+            textView.setText("Light Disease/Disorder of Pigmentation");
+        }
+        else if(maxScoreIdx == 10){
+            textView.setText("Lupus/Connective Tissue disease");
+        }
+        else if(maxScoreIdx == 11){
+            textView.setText("Melanoma Skin Cancer");
+        }
+        else if(maxScoreIdx == 12){
+            textView.setText("Nail Fungus or Nail Disease");
+        }
+        else if(maxScoreIdx == 13){
+            textView.setText("Contact Dermatitis");
+        }
+        else if(maxScoreIdx == 14){
+            textView.setText("Psoriasis/Lichen Planus and related disease");
+        }
+        else if(maxScoreIdx == 15){
+            textView.setText("Scabies Lyme Disease/Infestation/Bite");
+        }
+        else if(maxScoreIdx == 16){
+            textView.setText("Seborrheic Keratoses and other Benign Tumor");
+        }
+        else if(maxScoreIdx == 17){
+            textView.setText("Systemic Disease");
+        }
+        else if(maxScoreIdx == 18){
+            textView.setText("Fungal Infection");
+        }
+        else if(maxScoreIdx == 19){
+            textView.setText("Urticaria Hives");
+        }
+        else if(maxScoreIdx == 20){
+            textView.setText("Vascular Tumor");
+        }
+        else if(maxScoreIdx == 21){
+            textView.setText("Vasculitis");
+        }
+        else{
+            textView.setText("Warts/Viral Infection");
+        }
+
         imageview.setImageBitmap(bitmap);
+
+        btn_return.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                switch (view.getId()){
+                    case R.id.btn_return:
+                        Intent mainIntent = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(mainIntent);
+                        break;
+                }
+            }
+        });
+
+
     }
 
     public static String assetFilePath(Context context, String assetName) throws IOException {
