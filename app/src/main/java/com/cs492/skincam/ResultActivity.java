@@ -42,7 +42,7 @@ public class ResultActivity extends AppCompatActivity {
         Module module = null;
         try {
             Log.i("MODEL", "MODEL_LOAD_SUCCESS");
-            module = Module.load(assetFilePath(getApplicationContext(), "skinclass_model.ptl"));
+            module = Module.load(assetFilePath(getApplicationContext(), "mobile_resnet18.ptl"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -61,6 +61,7 @@ public class ResultActivity extends AppCompatActivity {
                 maxScoreIdx = i;
             }
         }
+        Log.i("MODEL_RESULT", String.valueOf(maxScoreIdx));
 
         imageview.setImageBitmap(bitmap);
     }
