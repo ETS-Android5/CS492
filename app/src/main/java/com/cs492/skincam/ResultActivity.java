@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -37,6 +38,7 @@ public class ResultActivity extends AppCompatActivity {
 
         ImageView imageview = (ImageView)findViewById(R.id.imageview);
         TextView textView = (TextView)findViewById(R.id.textview);
+        TextView textView2 = (TextView)findViewById(R.id.textview2);
 
         Bundle extras = getIntent().getExtras();
 
@@ -49,7 +51,7 @@ public class ResultActivity extends AppCompatActivity {
         Module module = null;
         try {
             Log.i("MODEL", "MODEL_LOAD_SUCCESS");
-            module = Module.load(assetFilePath(getApplicationContext(), "mobile_resnet18.ptl"));
+            module = Module.load(assetFilePath(getApplicationContext(), "pruned_mobile_resnet18.ptl"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -78,72 +80,96 @@ public class ResultActivity extends AppCompatActivity {
 
         if(maxScoreIdx == 0) {
             textView.setText("acne");
+            textView2.setText(getString(R.string.description_acne));
+
         }
         else if(maxScoreIdx == 1){
             textView.setText("Actinic Keratosis Basal Cell Carcinoma/Malignant Lesion");
+            textView2.setText(getString(R.string.description_Actinic_Keratosis));
         }
         else if(maxScoreIdx == 2){
             textView.setText("Atopic Dermatitis");
+            textView2.setText(getString(R.string.description_Atopic_Dermatitis));
         }
         else if(maxScoreIdx == 3){
             textView.setText("Bullous Disease");
+            textView2.setText(getString(R.string.description_Bullous_Disease));
         }
         else if(maxScoreIdx == 4){
             textView.setText("Cellulitis Impetigo and other Bacterial Infection");
+            textView2.setText(getString(R.string.description_Cellulitis_Impetigo));
         }
         else if(maxScoreIdx == 5){
             textView.setText("Eczema");
+            textView2.setText(getString(R.string.description_Eczema));
         }
         else if(maxScoreIdx == 6){
             textView.setText("Exanthem/Drug Eruption");
+            textView2.setText(getString(R.string.description_Exanthem));
         }
         else if(maxScoreIdx == 7){
             textView.setText("Hair Loss or Hair Disease");
+            textView2.setText(getString(R.string.description_Hair_Loss));
         }
         else if(maxScoreIdx == 8){
             textView.setText("Herpes HPV or STD");
+            textView2.setText(getString(R.string.description_Herpes_HPV));
         }
         else if(maxScoreIdx == 9){
             textView.setText("Light Disease/Disorder of Pigmentation");
+            textView2.setText(getString(R.string.description_Light_Disease));
         }
         else if(maxScoreIdx == 10){
             textView.setText("Lupus/Connective Tissue disease");
+            textView2.setText(getString(R.string.description_Lupus));
         }
         else if(maxScoreIdx == 11){
             textView.setText("Melanoma Skin Cancer");
+            textView2.setText(getString(R.string.description_Melanoma_Skin_Cancer));
         }
         else if(maxScoreIdx == 12){
             textView.setText("Nail Fungus or Nail Disease");
+            textView2.setText(getString(R.string.description_Nail_Fungus));
         }
         else if(maxScoreIdx == 13){
             textView.setText("Contact Dermatitis");
+            textView2.setText(getString(R.string.description_Contact_Dermatitis));
         }
         else if(maxScoreIdx == 14){
             textView.setText("Psoriasis/Lichen Planus and related disease");
+            textView2.setText(getString(R.string.description_Psoriasis));
         }
         else if(maxScoreIdx == 15){
             textView.setText("Scabies Lyme Disease/Infestation/Bite");
+            textView2.setText(getString(R.string.description_Scabies_Lyme_Disease));
         }
         else if(maxScoreIdx == 16){
             textView.setText("Seborrheic Keratoses and other Benign Tumor");
+            textView2.setText(getString(R.string.description_Seborrheic_Keratoses));
         }
         else if(maxScoreIdx == 17){
             textView.setText("Systemic Disease");
+            textView2.setText(getString(R.string.description_Systemic_Disease));
         }
         else if(maxScoreIdx == 18){
             textView.setText("Fungal Infection");
+            textView2.setText(getString(R.string.description_Fungal_Infection));
         }
         else if(maxScoreIdx == 19){
             textView.setText("Urticaria Hives");
+            textView2.setText(getString(R.string.description_Urticaria_Hives));
         }
         else if(maxScoreIdx == 20){
             textView.setText("Vascular Tumor");
+            textView2.setText(getString(R.string.description_Vascular_Tumor));
         }
         else if(maxScoreIdx == 21){
             textView.setText("Vasculitis");
+            textView2.setText(getString(R.string.description_Vasculitis));
         }
         else{
             textView.setText("Warts/Viral Infection");
+            textView2.setText(getString(R.string.description_Viral_Infection));
         }
 
         imageview.setImageBitmap(bitmap);

@@ -4,26 +4,33 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/main_constraint"
-    tools:context=".ResultActivity">
+    tools:context=".ResultActivity"
+    android:background="@color/colorPrimary">
 
     <ImageView
         android:id="@+id/imageview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/textview"
+        android:layout_height="0dp"
+        android:layout_width="0dp"
+        android:background="@drawable/round"
+        app:layout_constraintBottom_toBottomOf="@+id/text_top_guideline"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_goneMarginBottom="2dp"
+        />
 
     <TextView
         android:id="@+id/textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/text_top_guideline"
-        app:layout_constraintBottom_toTopOf="@id/text2_top_guideline"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/text_top_guideline"
+        app:layout_constraintBottom_toBottomOf="@id/text2_top_guideline"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:textColor="@color/colorPrimaryDark"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
         />
 
     <ScrollView
@@ -39,21 +46,44 @@
             android:layout_margin="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/description_acne"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="15sp"
             />
         </ScrollView>
 
     <Button
         android:id="@+id/btn_return"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:gravity="center"
-        android:text="Return"
+        android:textAllCaps="false"
+        android:text="Home"
+        android:fontFamily="@font/fontstyle"
+        android:textColor="@color/colorPrimary"
+        android:textSize="30sp"
         android:background="@drawable/roundbutton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/button_top_guideline"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.08"
+        app:layout_constraintWidth_percent="0.5"
+        />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/colorPrimaryDark"
+        app:layout_constraintTop_toBottomOf="@+id/button_top_guideline"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/colorPrimaryDark"
+        app:layout_constraintTop_toBottomOf="@+id/text2_top_guideline"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/colorPrimaryDark"
+        app:layout_constraintTop_toBottomOf="@+id/text_top_guideline"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/button_top_guideline"

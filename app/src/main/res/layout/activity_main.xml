@@ -4,7 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
     tools:context=".MainActivity">
+
+
 
     <TextView
         android:id="@+id/imageview_theme"
@@ -13,7 +16,7 @@
         android:text="Skincam"
         android:fontFamily="@font/fontstyle"
         android:textSize="100sp"
-        android:textColor="@color/black"
+        android:textColor="@color/colorPrimaryDark"
         android:gravity="center"
 
         app:layout_constraintLeft_toLeftOf="parent"
@@ -24,7 +27,11 @@
 
     <Button
         android:id="@+id/btn_camera"
+        android:textAllCaps="false"
         android:text="Camera"
+        android:fontFamily="@font/fontstyle"
+        android:textColor="@color/colorPrimary"
+        android:textSize="30dp"
         android:layout_height="0dp"
         android:layout_width="0dp"
         android:background="@drawable/roundbutton"
@@ -38,7 +45,11 @@
 
     <Button
         android:id="@+id/btn_gallery"
+        android:textAllCaps="false"
         android:text="Gallery"
+        android:fontFamily="@font/fontstyle"
+        android:textColor="@color/colorPrimary"
+        android:textSize="30dp"
         android:layout_height="0dp"
         android:layout_width="0dp"
         android:background="@drawable/roundbutton"
