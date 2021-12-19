@@ -32,16 +32,16 @@ public class GalleryActivity extends AppCompatActivity {
         imageView = findViewById(R.id.imageView);
 
         try {
-            String imgpath = getCacheDir() + "/" + imgName;   // 내부 저장소에 저장되어 있는 이미지 경로
+            String imgpath = getCacheDir() + "/" + imgName;   // Image path stored in internal storage
             Bitmap bm = BitmapFactory.decodeFile(imgpath);
-            imageView.setImageBitmap(bm);   // 내부 저장소에 저장된 이미지를 이미지뷰에 셋
+            imageView.setImageBitmap(bm);   // Set the image stored in the internal storage to the imageview
             Toast.makeText(getApplicationContext(), "파일 로드 성공", Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
             Toast.makeText(getApplicationContext(), "파일 로드 실패", Toast.LENGTH_SHORT).show();
         }
     }
 
-    public void bt1(View view) {    // 이미지 선택 누르면 실행됨 이미지 고를 갤러리 오픈
+    public void bt1(View view) {    // Click to select an image and it will be executed Open the gallery to select an image
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
@@ -49,7 +49,7 @@ public class GalleryActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) { // 갤러리
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) { // gallery
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 101) {
             if (resultCode == RESULT_OK) {
@@ -58,9 +58,9 @@ public class GalleryActivity extends AppCompatActivity {
                 try {
                     InputStream instream = resolver.openInputStream(fileUri);
                     Bitmap imgBitmap = BitmapFactory.decodeStream(instream);
-                    imageView.setImageBitmap(imgBitmap);    // 선택한 이미지 이미지뷰에 셋
-                    instream.close();   // 스트림 닫아주기
-                    saveBitmapToJpeg(imgBitmap);    // 내부 저장소에 저장
+                    imageView.setImageBitmap(imgBitmap);    // Selected image set to imageview
+                    instream.close();   // close the stream
+                    saveBitmapToJpeg(imgBitmap);    // save to internal storage
                     Toast.makeText(getApplicationContext(), "파일 불러오기 성공", Toast.LENGTH_SHORT).show();
                 } catch (Exception e) {
                     Toast.makeText(getApplicationContext(), "파일 불러오기 실패", Toast.LENGTH_SHORT).show();
@@ -69,26 +69,26 @@ public class GalleryActivity extends AppCompatActivity {
         }
     }
 
-    public void saveBitmapToJpeg(Bitmap bitmap) {   // 선택한 이미지 내부 저장소에 저장
-        File tempFile = new File(getCacheDir(), imgName);    // 파일 경로와 이름 넣기
+    public void saveBitmapToJpeg(Bitmap bitmap) {   // Save selected image to internal storage
+        File tempFile = new File(getCacheDir(), imgName);    // Enter the file path and name
         try {
-            tempFile.createNewFile();   // 자동으로 빈 파일을 생성하기
-            FileOutputStream out = new FileOutputStream(tempFile);  // 파일을 쓸 수 있는 스트림을 준비하기
-            bitmap.compress(Bitmap.CompressFormat.PNG, 100, out);   // compress 함수를 사용해 스트림에 비트맵을 저장하기
-            out.close();    // 스트림 닫아주기
+            tempFile.createNewFile();   // Initialize create empty files
+            FileOutputStream out = new FileOutputStream(tempFile);  // Preparing a file writable stream
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, out);   // Saving a bitmap to a stream using the compress function
+            out.close();    // close the stream
             Toast.makeText(getApplicationContext(), "파일 저장 성공", Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
             Toast.makeText(getApplicationContext(), "파일 저장 실패", Toast.LENGTH_SHORT).show();
         }
     }
 
-    public void bt2(View view) {    // 이미지 삭제
+    public void bt2(View view) {    // delete image
         try {
-            File file = getCacheDir();  // 내부저장소 캐시 경로를 받아오기
+            File file = getCacheDir();  // Get the internal storage cache path
             File[] flist = file.listFiles();
-            for (int i = 0; i < flist.length; i++) {    // 배열의 크기만큼 반복
-                if (flist[i].getName().equals(imgName)) {   // 삭제하고자 하는 이름과 같은 파일명이 있으면 실행
-                    flist[i].delete();  // 파일 삭제
+            for (int i = 0; i < flist.length; i++) {    // iterate over the size of the array
+                if (flist[i].getName().equals(imgName)) {   // If there is a file name that is the same as the name you want to delete, run it
+                    flist[i].delete();  // delete file
                     Toast.makeText(getApplicationContext(), "파일 삭제 성공", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -97,17 +97,17 @@ public class GalleryActivity extends AppCompatActivity {
         }
     }
 
-    public void bt3(View view) {    // 이미지 선택 누르면 다음 activity로 bitmap file 전송.
+    public void bt3(View view) {    // Click on the image selection button to send the bitmap file to the result activity.
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         Bitmap bitmap = ((BitmapDrawable)imageView.getDrawable()).getBitmap();
         float scale = (float) (1024/(float)bitmap.getWidth());
         int image_w = (int) (bitmap.getWidth() * scale);
         int image_h = (int) (bitmap.getHeight() * scale);
         Bitmap resize = Bitmap.createScaledBitmap(bitmap, image_w, image_h, true);
-        resize.compress(Bitmap.CompressFormat.JPEG, 100, stream);
-        byte[] byteArray = stream.toByteArray();
+        resize.compress(Bitmap.CompressFormat.JPEG, 100, stream); // The process of converting photos to the right size
+        byte[] byteArray = stream.toByteArray(); // save picture to byte array
 
-        Intent intent = new Intent(GalleryActivity.this,ResultActivity.class);
+        Intent intent = new Intent(GalleryActivity.this,ResultActivity.class); // send a bitmap to results activity
         intent.putExtra("image", byteArray);
 
         startActivity(intent);
